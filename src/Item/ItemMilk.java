@@ -35,7 +35,7 @@ public class ItemMilk extends Item{
     }
 
     public String infoToString(){
-        return null ;
+        return this + " Gras [" + getFat() + "] Litres [" + getLiters() + "]"  ;
     }
 
 }

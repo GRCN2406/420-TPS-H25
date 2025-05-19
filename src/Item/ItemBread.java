@@ -16,7 +16,7 @@ public class ItemBread extends Item{
     }
 
     public String getCategoryString(){
-        return null;
+        return "[" + getCategory() + "]";
     }
 
     public String getColor() {
@@ -36,6 +36,6 @@ public class ItemBread extends Item{
     }
 
     public String infoToString(){
-        return null ;
+        return this + " Couleur [" + getColor() + "] Poids [" + getWeight() + "]"  ;
     }
 }

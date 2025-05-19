@@ -36,6 +36,6 @@ public class ItemEggs extends Item {
     }
 
     public String infoToString(){
-        return null ;
+        return this + " Couleur [" + getColor() + "] Nombre [" + getNumber() + "]"  ;
     }
 }

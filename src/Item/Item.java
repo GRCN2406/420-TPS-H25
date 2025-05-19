@@ -61,12 +61,12 @@ public abstract class Item {
     }
 
     public String infoToString(){
-        return null ;
+        return this.toString() ;
     }
 
     @Override
     public String toString() {
-        return "" ;
+        return "Catégorie [" + getCategory() + "] ID [" + getID() + "] Nom [" + getName() + "] Prix + [" + getPrice() + "]"  ;
     }
 }
 
