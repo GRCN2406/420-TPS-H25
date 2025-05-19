@@ -5,9 +5,18 @@ public class ItemBread extends Item{
     private double weight;
 
     public ItemBread(int ID, String name, double price, String color, int weight){
-        super(ID,name,price);
+        super(Category.Bread, ID, name, price);
         this.color = color ;
         this.weight = weight ;
+    }
+
+    @Override
+    public Category getCategory() {
+        return category;
+    }
+
+    public String getCategoryString(){
+        return null;
     }
 
     public String getColor() {

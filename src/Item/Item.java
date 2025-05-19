@@ -2,11 +2,11 @@ package Item.Item;
 
 public abstract class Item {
 
-    private Category category ;
-    private int ID ;
-    private String name ;
-    private double price ;
-    private int quantityInStock ;
+    protected Category category ;
+    protected int ID ;
+    protected String name ;
+    protected double price ;
+    protected int quantityInStock ;
 
     public Item(Category category, int ID, String name, double price){
         this.category = category ;
@@ -66,12 +66,7 @@ public abstract class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "ID=" + ID +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", quantityInStock=" + quantityInStock +
-                '}';
+        return "" ;
     }
 }
 
