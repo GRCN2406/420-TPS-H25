@@ -10,4 +10,8 @@ public class InventoryDatabaseNode {
         this.item = item ;
         this.next = null ;
     }
+
+    public Item getItem(){
+        return item ;
+    }
 }
