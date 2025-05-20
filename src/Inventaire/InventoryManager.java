@@ -1,9 +1,5 @@
 package Item.Inventaire;
-
-import Item.Item.Item;
-import Item.Item.ItemBread;
-import Item.Item.ItemEggs;
-import Item.Item.ItemMilk;
+import Item.Item.*;
 
 public class InventoryManager {
     private InventoryDatabase inventoryDatabase;
@@ -28,7 +24,9 @@ public class InventoryManager {
     }
 
     public void removeItem(int ID){
-        inventoryDatabase.remove(ID);
+        if (inventoryDatabase != null){
+            inventoryDatabase.remove(ID);
+        }
     }
 
     public void increaseItemQuantity(int ID, int quantity){
