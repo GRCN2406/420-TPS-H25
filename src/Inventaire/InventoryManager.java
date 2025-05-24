@@ -24,9 +24,7 @@ public class InventoryManager {
     }
 
     public void removeItem(int ID){
-        if (inventoryDatabase != null){
             inventoryDatabase.remove(ID);
-        }
     }
 
     public void increaseItemQuantity(int ID, int quantity){

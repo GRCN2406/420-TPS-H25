@@ -20,53 +20,46 @@ public class InventoryDatabase {
 
     public Item findByID(int ID){
         InventoryDatabaseNode actual = first ;
-        boolean find = false ;
-        while (actual.next != null && !find){
+        while (actual != null){
             if (actual.getItem().getID() == ID){
-                find = true ;
-            }else{
-                actual = actual.next ;
+                return actual.getItem() ;
             }
+            actual = actual.next ;
         }
-        return actual.getItem() ;
+       return null ;
     }
 
 
     public void remove(int ID){
-        boolean removed = false ;
         InventoryDatabaseNode actual ;
-        /*if (findByID(ID).getID() == first.getItem().getID()){
-            first = first.next ;
-        } else if (findByID(ID).getID() == getBeforeLast().next.getItem().getID()) {
-            getBeforeLast().next = null ;
-        }else {*/
-            actual = first ;
-            while (actual.next.next != null && !removed){
-                if (actual.next.getItem().getID() == ID){
-                    actual.next = actual.next.next ;
-                    removed = true ;
-                }
-                actual = actual.next ;
-            }
-       // }
-        itemsCount-- ;
-    }
 
-    private InventoryDatabaseNode getBeforeLast(){
-        InventoryDatabaseNode actual = first ;
-        while (actual.next.next != null){
+        if (first == null){
+            return;
+        }
+
+        if (first.getItem().getID() == ID){
+            first = first.next ;
+            itemsCount-- ;
+            return;
+        }
+
+        actual = first ;
+        while (actual.next != null){
+            if (actual.next.getItem().getID() == ID){
+                actual.next = actual.next.next ;
+                itemsCount-- ;
+                return;
+            }
             actual = actual.next ;
         }
-        return actual ;
+
     }
 
     public Item[] getArrayOfItems(){
-        System.out.println("nbItems " + itemsCount);
         Item[] itemsArray = new Item[itemsCount] ;
         InventoryDatabaseNode actual = first ;
         int index = 0 ;
-        while (actual.next != null){
-            System.out.println(" index " + index);
+        while (actual != null && index < itemsCount){
             itemsArray[index] = actual.getItem() ;
             actual = actual.next ;
             index++ ;
