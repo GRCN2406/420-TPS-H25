@@ -1,6 +1,9 @@
 package Item.Inventaire;
 
+import Item.Exceptions.ExceptionItemAlreadyExists;
+import Item.Exceptions.ExceptionItemNotFound;
 import Item.Item.Item;
+
 
 public class InventoryDatabase {
     private int itemsCount ;
@@ -11,14 +14,18 @@ public class InventoryDatabase {
         itemsCount = 0 ;
     }
 
-    public void insert(Item item){
-        InventoryDatabaseNode newItem = new InventoryDatabaseNode(item) ;
-        newItem.next = first ;
-        first = newItem ;
-        itemsCount++ ;
+    public void insert(Item item) throws ExceptionItemAlreadyExists{
+        try{
+            findByID(item.getID());
+            throw new ExceptionItemAlreadyExists(item.getID());
+        }catch (ExceptionItemNotFound e){
+            InventoryDatabaseNode newItem = new InventoryDatabaseNode(item) ;
+            newItem.next = first ;
+            first = newItem ;
+            itemsCount++ ;
+        }
     }
-
-    public Item findByID(int ID){
+    public Item findByID(int ID) throws ExceptionItemNotFound {
         InventoryDatabaseNode actual = first ;
         while (actual != null){
             if (actual.getItem().getID() == ID){
@@ -26,11 +33,11 @@ public class InventoryDatabase {
             }
             actual = actual.next ;
         }
-       return null ;
+       throw new ExceptionItemNotFound(ID)  ;
     }
 
 
-    public void remove(int ID){
+    public void remove(int ID) throws ExceptionItemNotFound{
         InventoryDatabaseNode actual ;
 
         if (first == null){
@@ -52,6 +59,8 @@ public class InventoryDatabase {
             }
             actual = actual.next ;
         }
+
+        throw new ExceptionItemNotFound(ID);
 
     }
 
