@@ -29,12 +29,12 @@ public class InventoryManager {
 
     public void increaseItemQuantity(int ID, int quantity){
         Item item = inventoryDatabase.findByID(ID) ;
-        item.setQuantityInStock(item.getQuantityInStock() + quantity);
+        item.increaseQuantityInStock(quantity);
     }
 
     public void decreaseItemQuantity(int ID, int quantity){
         Item item = inventoryDatabase.findByID(ID) ;
-        item.setQuantityInStock(item.getQuantityInStock() - quantity);
+        item.decreaseQuantityInStock(quantity);
     }
 
     public Item getItem(int ID){
