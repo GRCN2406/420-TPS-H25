@@ -3,6 +3,7 @@ package Item;
 //import Item.Exceptions.ExceptionInsufficientQuantityInStock;
 //import Item.Exceptions.ExceptionItemAlreadyExists;
 //import Item.Exceptions.ExceptionItemNotFound;
+import Item.Exceptions.*;
 import Item.GUI.GUIInventoryManager;
 import Item.Inventaire.InventoryManager;
 import Item.Item.*;
@@ -32,43 +33,43 @@ public class TestingMain  {
         System.out.println(item1.infoToString());
 
         System.out.println("\n=> TEST Création d'un item avec un ID existant");                     // 6 points
-        //try {
-        //    inventoryManager.addNewBreadItem(10, "Pain bio", 5, "brun", 400);
-        //} catch (ExceptionItemAlreadyExists e) {
-        //    System.out.println(e.getMessage());
-        //}
+        try {
+           inventoryManager.addNewBreadItem(10, "Pain bio", 5, "brun", 400);
+        } catch (ExceptionItemAlreadyExists e) {
+           System.out.println(e.getMessage());
+        }
 
         System.out.println("\n=> TEST Enlever un item");                                            // 6 points
         inventoryManager.removeItem(10);
 
         System.out.println("\n=> TEST Enlever un item non existant (catch exception)");             // 6 points
-        //try {
-        //    inventoryManager.removeItem(10);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
+        try {
+            inventoryManager.removeItem(10);
+        } catch (ExceptionItemNotFound e) {
+           System.out.println(e.getMessage());
+        }
 
         System.out.println("\n=> TEST Incrémenter la quantité d'un item");                          // 8 points
-        //try {
-        //    inventoryManager.increaseItemQuantity(10, 18);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
-        //try {
-        //    inventoryManager.increaseItemQuantity(11, 3);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
-        //try {
-        //   inventoryManager.increaseItemQuantity(12, 4);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
-        //try {
-        //    inventoryManager.increaseItemQuantity(13, 23);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
+        try {
+            inventoryManager.increaseItemQuantity(10, 18);
+        } catch (ExceptionItemNotFound e) {
+           System.out.println(e.getMessage());
+        }
+        try {
+           inventoryManager.increaseItemQuantity(11, 3);
+        } catch (ExceptionItemNotFound e) {
+           System.out.println(e.getMessage());
+        }
+        try {
+           inventoryManager.increaseItemQuantity(12, 4);
+        } catch (ExceptionItemNotFound e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            inventoryManager.increaseItemQuantity(13, 23);
+        } catch (ExceptionItemNotFound e) {
+           System.out.println(e.getMessage());
+        }
 
         System.out.println("\n=> TEST Incrementer la quantité d'un item et afficher les nouvelles informations"); // 6 points
         inventoryManager.increaseItemQuantity(11, 25);
@@ -81,18 +82,18 @@ public class TestingMain  {
         System.out.println(item3.infoToString());
 
         System.out.println("\n=> Décrementer la quantité d'un item non existant (catch exception)");// 6 points
-        //try {
-        //    inventoryManager.decreaseItemQuantity(10, 1);
-        //} catch (ExceptionItemNotFound e) {
-        //    System.out.println(e.getMessage());
-        //}
+        try {
+            inventoryManager.decreaseItemQuantity(10, 1);
+        } catch (ExceptionItemNotFound e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("\n=> TEST Trop décrémenter la quantité d'un item (catch exception)");   // 6 points
-        //try {
-        //    inventoryManager.decreaseItemQuantity(11, 32);
-        // } catch (ExceptionInsufficientQuantityInStock e) {
-        //    System.out.println(e.getMessage());
-        //}
+        try {
+           inventoryManager.decreaseItemQuantity(11, 32);
+         } catch (ExceptionInsufficientQuantityInStock e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("\n=> TEST Récupérer le array de items");// points
         Item[] items = inventoryManager.getArrayOfItems();
@@ -102,7 +103,7 @@ public class TestingMain  {
         //IO//ecrireInventaire("items.out",inventoryManager);                                       // 9 points
 
         //G//
-        GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
+        //GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
 
     }
 }
