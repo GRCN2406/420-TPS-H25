@@ -1,5 +1,7 @@
 package Item.Item;
 
+import Item.Exceptions.ExceptionInsufficientQuantityInStock;
+
 public abstract class Item {
 
     protected Category category ;
@@ -48,16 +50,20 @@ public abstract class Item {
         return quantityInStock;
     }
 
-    public void setQuantityInStock(int quantity) {
-        this.quantityInStock = quantity;
+    public void setQuantityInStock(int quantity) throws ExceptionInsufficientQuantityInStock {
+        if (quantity >= 0){
+            this.quantityInStock = quantity;
+        }else{
+            throw new ExceptionInsufficientQuantityInStock(quantity);
+        }
     }
 
     public void increaseQuantityInStock(int quantity) {
-        this.quantityInStock += quantity;
+       setQuantityInStock(getQuantityInStock() + quantity);
     }
 
     public void decreaseQuantityInStock(int quantity) {
-        this.quantityInStock -= quantity;
+        setQuantityInStock(getQuantityInStock() - quantity);
     }
 
     public String infoToString(){
