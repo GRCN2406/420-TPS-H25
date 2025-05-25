@@ -44,4 +44,5 @@ public class InventoryManager {
     public Item[] getArrayOfItems(){
         return inventoryDatabase.getArrayOfItems() ;
     }
+
 }
