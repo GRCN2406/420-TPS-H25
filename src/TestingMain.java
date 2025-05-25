@@ -3,6 +3,7 @@ package Item;
 //import Item.Exceptions.ExceptionInsufficientQuantityInStock;
 //import Item.Exceptions.ExceptionItemAlreadyExists;
 //import Item.Exceptions.ExceptionItemNotFound;
+import Item.GUI.GUIInventoryManager;
 import Item.Inventaire.InventoryManager;
 import Item.Item.*;
 
@@ -100,7 +101,8 @@ public class TestingMain  {
         }
         //IO//ecrireInventaire("items.out",inventoryManager);                                       // 9 points
 
-        //G//GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
+        //G//
+        GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
 
     }
 }

@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Item.Item.* ;
 
 public class GUIItemDialog extends JDialog {
-    /* private Item item;
+    private Item item;
     private JFrame frame;
 
     public GUIItemDialog(JFrame frame, Item item, boolean editable) {
@@ -140,5 +141,5 @@ public class GUIItemDialog extends JDialog {
         add(buttons, BorderLayout.SOUTH);
 
         pack();
-    } */
+    }
 }

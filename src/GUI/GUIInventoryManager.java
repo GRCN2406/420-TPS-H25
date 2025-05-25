@@ -10,10 +10,10 @@ import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import Item.Inventaire.*;
-import Item.Item.Category;
+import Item.Item.* ;
 
 public class GUIInventoryManager extends JFrame
-{/*
+{
     private InventoryManager inventoryManager;
     private DefaultListModel<Item> itemsListModel;
     private JList itemsList;
@@ -258,7 +258,5 @@ public class GUIInventoryManager extends JFrame
         return BorderFactory.createEmptyBorder(0, 5, 10 , 5);
     }
 
-
-*/
 
 }
