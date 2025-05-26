@@ -7,8 +7,13 @@ import Item.Exceptions.ExceptionItemNotFound;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import Item.Inventaire.*;
 import Item.Item.* ;
 
@@ -101,6 +106,82 @@ public class GUIInventoryManager extends JFrame
                 // TODO -- Ajoutez le code pour ouvrir le dialogue de visualisation d'un item
                 //         ainsi que la gestion des erreurs possibles si nécessaire
                 //
+                String motifValeursItem = "Catégorie\\s*\\[(.+?)\\]\\s*" +
+                        "ID\\s*\\[(.+?)\\]\\s*" +
+                        "Nom\\s*\\[(.+?)\\]\\s*" +
+                        "Prix\\s*\\[(.+?)\\]\\s*" +
+                        ".+?\\[(.+?)\\]\\s*" +
+                        ".+?\\[(.+?)\\]";
+
+                String motifAttributsItem = "\\](.*?)\\[";
+
+                Pattern patternVal = Pattern.compile(motifValeursItem);
+                Matcher matcherVal = patternVal.matcher(item.infoToString());
+                Pattern patternAtb = Pattern.compile(motifAttributsItem);
+                Matcher matcherAtb = patternAtb.matcher(item.infoToString());
+
+                JFrame frame = new JFrame();
+                JPanel panel = new JPanel();
+                panel.setLayout(new GridLayout(0, 2, 10, 10));
+                JTextField valeur1, valeur2, valeur3, valeur4, valeur5, valeur6 ;
+
+                int compteur = 0 ;
+                if ( matcherVal.find()){
+                    while (matcherAtb.find()){
+                        compteur++ ;
+                        switch (compteur){
+                            case 1:
+                                frame.setTitle(matcherVal.group(1));
+                                panel.add(new JLabel(matcherAtb.group(1).trim()));
+                                valeur1 = new JTextField(matcherVal.group(2));
+                                valeur1.setEditable(false);
+                                panel.add(valeur1);
+                                break;
+                            case 2:
+                                panel.add(new JLabel(matcherAtb.group(1).trim()));
+                                valeur2 = new JTextField(matcherVal.group(3));
+                                valeur2.setEditable(false);
+                                panel.add(valeur2);
+                                break;
+                            case 3:
+                                panel.add(new JLabel(matcherAtb.group(1).trim()));
+                                valeur3 = new JTextField(matcherVal.group(4));
+                                valeur3.setEditable(false);
+                                panel.add(valeur3);
+                                panel.add(new JLabel("Quantité en stock"));
+                                valeur4 = new JTextField("" + item.getQuantityInStock());
+                                valeur4.setEditable(false);
+                                panel.add(valeur4);
+                                break;
+                            case 4:
+                                panel.add(new JLabel(matcherAtb.group(1).trim()));
+                                valeur5 = new JTextField(matcherVal.group(5));
+                                valeur5.setEditable(false);
+                                panel.add(valeur5);
+                                break;
+                            case 5:
+                                panel.add(new JLabel(matcherAtb.group(1).trim()));
+                                valeur6 = new JTextField(matcherVal.group(6));
+                                valeur6.setEditable(false);
+                                panel.add(valeur6);
+                                break;
+                        }
+                    }
+                }
+
+                JButton buttonOK = new JButton("OK");
+                buttonOK.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frame.dispose();
+                    }
+                });
+                panel.add(buttonOK);
+                frame.add(panel);
+                frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                frame.setSize(350,350);
+                frame.setVisible(true);
+
             }
         });
 

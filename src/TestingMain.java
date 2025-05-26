@@ -171,7 +171,7 @@ public class TestingMain  {
         ecrireInventaire("items.out",inventoryManager);                                       // 9 points
 
         //G//
-        //GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
+        GUIInventoryManager GUIInventoryManager = new GUIInventoryManager(inventoryManager);   // 20 points
 
     }
 }
