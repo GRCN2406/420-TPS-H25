@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,6 +95,74 @@ public class GUIInventoryManager extends JFrame
         return itemButtons;
     }
 
+    private List<JLabel> createLabels(Item item){
+        String motifAttributsItem = "\\](.*?)\\[";
+        Pattern patternAtb = Pattern.compile(motifAttributsItem);
+        Matcher matcherAtb = patternAtb.matcher(item.infoToString());
+        List<JLabel> labels = new ArrayList<>();
+        int compteur = 0;
+        while (matcherAtb.find()){
+            if (compteur == 3){
+                labels.add(new JLabel("Quantité en stock"));
+            }
+            labels.add(new JLabel(matcherAtb.group(1).trim()));
+            compteur++;
+        }
+        return labels;
+    }
+
+    private List<JTextField> createChamps(Item item){
+        String motifValeursItem = "Catégorie\\s*\\[(.+?)\\]\\s*" +
+                "ID\\s*\\[(.+?)\\]\\s*" +
+                "Nom\\s*\\[(.+?)\\]\\s*" +
+                "Prix\\s*\\[(.+?)\\]\\s*" +
+                ".+?\\[(.+?)\\]\\s*" +
+                ".+?\\[(.+?)\\]";
+
+        Pattern patternVal = Pattern.compile(motifValeursItem);
+        Matcher matcherVal = patternVal.matcher(item.infoToString());
+        List<JTextField> champs = new ArrayList<>();
+        if (matcherVal.find()) {
+            for (int i = 1; i <= matcherVal.groupCount(); i++) {
+                champs.add(new JTextField(matcherVal.group(i)));
+                if (i==3){
+                    champs.add(new JTextField("" + item.getQuantityInStock()));
+                }
+            }
+        }
+        return champs;
+    }
+
+    private void fenetreDeVisualisation(Item item){
+        List<JTextField> champs = createChamps(item);
+        List<JLabel> labels = createLabels(item);
+
+        JFrame frame = new JFrame(champs.get(0).getText());
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(0, 2, 10, 10));
+
+        for (int i=0 ; i<labels.size() ; i++){
+            panel.add(labels.get(i));
+            champs.get(i+1).setEditable(false);
+            panel.add(champs.get(i+1));
+        }
+
+        JButton buttonOK = new JButton("OK");
+        buttonOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+        panel.add(buttonOK);
+        frame.add(panel);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setSize(350,350);
+        frame.setVisible(true);
+
+    }
+
+
     private JButton createViewButton() {
         JButton button = new JButton(new ImageIcon("icons/view.png"));
         button.setBorder(buttonBorder());
@@ -106,7 +176,7 @@ public class GUIInventoryManager extends JFrame
                 // TODO -- Ajoutez le code pour ouvrir le dialogue de visualisation d'un item
                 //         ainsi que la gestion des erreurs possibles si nécessaire
                 //
-                String motifValeursItem = "Catégorie\\s*\\[(.+?)\\]\\s*" +
+                 /* String motifValeursItem = "Catégorie\\s*\\[(.+?)\\]\\s*" +
                         "ID\\s*\\[(.+?)\\]\\s*" +
                         "Nom\\s*\\[(.+?)\\]\\s*" +
                         "Prix\\s*\\[(.+?)\\]\\s*" +
@@ -180,9 +250,11 @@ public class GUIInventoryManager extends JFrame
                 frame.add(panel);
                 frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 frame.setSize(350,350);
-                frame.setVisible(true);
+                frame.setVisible(true); */
 
+                fenetreDeVisualisation(item);
             }
+
         });
 
         return button;
