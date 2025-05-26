@@ -72,7 +72,7 @@ public abstract class Item {
 
     @Override
     public String toString() {
-        return "Catégorie [" + getCategory() + "] ID [" + getID() + "] Nom [" + getName() + "] Prix + [" + getPrice() + "]"  ;
+        return "Catégorie [" + getCategory() + "] ID [" + getID() + "] Nom [" + getName() + "] Prix [" + getPrice() + "]"  ;
     }
 }
 
