@@ -6,10 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Item.Item.* ;
 
+/**
+ * Une boîte de dialogue permettant d'afficher ou de modifier les informations d'un item.
+ */
 public class GUIItemDialog extends JDialog {
     private Item item;
     private JFrame frame;
 
+    /**
+     * Crée une boîte de dialogue pour consulter ou modifier un item.
+     *
+     * @param frame    la fenêtre parente de la boîte de dialogue
+     * @param item     l'item à afficher ou modifier
+     * @param editable si vrai, les champs sont modifiables pour permettre la mise à jour des données
+     */
     public GUIItemDialog(JFrame frame, Item item, boolean editable) {
         super(frame, item.getCategoryString(), Dialog.ModalityType.DOCUMENT_MODAL);
         this.frame = frame;

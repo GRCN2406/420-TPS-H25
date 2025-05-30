@@ -19,13 +19,21 @@ import java.util.regex.Pattern;
 import Item.Inventaire.*;
 import Item.Item.* ;
 
-public class GUIInventoryManager extends JFrame
-{
+/**
+ * Classe représentant l'interface graphique principale pour la gestion d'un inventaire d'items.
+ * Elle permet d'afficher, créer, modifier, supprimer et ajuster les quantités d'items.
+ */
+public class GUIInventoryManager extends JFrame {
     private InventoryManager inventoryManager;
     private DefaultListModel<Item> itemsListModel;
     private JList itemsList;
     private int nextID;
 
+    /**
+     * Constructeur
+     *
+     * @param inventoryManager le gestionnaire d'inventaire à utiliser
+     */
     public GUIInventoryManager(InventoryManager inventoryManager) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.inventoryManager = inventoryManager;
@@ -95,74 +103,6 @@ public class GUIInventoryManager extends JFrame
         return itemButtons;
     }
 
-    private List<JLabel> createLabels(Item item){
-        String motifAttributsItem = "\\](.*?)\\[";
-        Pattern patternAtb = Pattern.compile(motifAttributsItem);
-        Matcher matcherAtb = patternAtb.matcher(item.infoToString());
-        List<JLabel> labels = new ArrayList<>();
-        int compteur = 0;
-        while (matcherAtb.find()){
-            if (compteur == 3){
-                labels.add(new JLabel("Quantité en stock"));
-            }
-            labels.add(new JLabel(matcherAtb.group(1).trim()));
-            compteur++;
-        }
-        return labels;
-    }
-
-    private List<JTextField> createChamps(Item item){
-        String motifValeursItem = "Catégorie\\s*\\[(.+?)\\]\\s*" +
-                "ID\\s*\\[(.+?)\\]\\s*" +
-                "Nom\\s*\\[(.+?)\\]\\s*" +
-                "Prix\\s*\\[(.+?)\\]\\s*" +
-                ".+?\\[(.+?)\\]\\s*" +
-                ".+?\\[(.+?)\\]";
-
-        Pattern patternVal = Pattern.compile(motifValeursItem);
-        Matcher matcherVal = patternVal.matcher(item.infoToString());
-        List<JTextField> champs = new ArrayList<>();
-        if (matcherVal.find()) {
-            for (int i = 1; i <= matcherVal.groupCount(); i++) {
-                champs.add(new JTextField(matcherVal.group(i)));
-                if (i==3){
-                    champs.add(new JTextField("" + item.getQuantityInStock()));
-                }
-            }
-        }
-        return champs;
-    }
-
-    private void fenetreDeVisualisation(Item item){
-        List<JTextField> champs = createChamps(item);
-        List<JLabel> labels = createLabels(item);
-
-        JFrame frame = new JFrame(champs.get(0).getText());
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(0, 2, 10, 10));
-
-        for (int i=0 ; i<labels.size() ; i++){
-            panel.add(labels.get(i));
-            champs.get(i+1).setEditable(false);
-            panel.add(champs.get(i+1));
-        }
-
-        JButton buttonOK = new JButton("OK");
-        buttonOK.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-            }
-        });
-        panel.add(buttonOK);
-        frame.add(panel);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setSize(350,350);
-        frame.setVisible(true);
-
-    }
-
-
     private JButton createViewButton() {
         JButton button = new JButton(new ImageIcon("icons/view.png"));
         button.setBorder(buttonBorder());
@@ -176,83 +116,9 @@ public class GUIInventoryManager extends JFrame
                 // TODO -- Ajoutez le code pour ouvrir le dialogue de visualisation d'un item
                 //         ainsi que la gestion des erreurs possibles si nécessaire
                 //
-                 /* String motifValeursItem = "Catégorie\\s*\\[(.+?)\\]\\s*" +
-                        "ID\\s*\\[(.+?)\\]\\s*" +
-                        "Nom\\s*\\[(.+?)\\]\\s*" +
-                        "Prix\\s*\\[(.+?)\\]\\s*" +
-                        ".+?\\[(.+?)\\]\\s*" +
-                        ".+?\\[(.+?)\\]";
-
-                String motifAttributsItem = "\\](.*?)\\[";
-
-                Pattern patternVal = Pattern.compile(motifValeursItem);
-                Matcher matcherVal = patternVal.matcher(item.infoToString());
-                Pattern patternAtb = Pattern.compile(motifAttributsItem);
-                Matcher matcherAtb = patternAtb.matcher(item.infoToString());
-
                 JFrame frame = new JFrame();
-                JPanel panel = new JPanel();
-                panel.setLayout(new GridLayout(0, 2, 10, 10));
-                JTextField valeur1, valeur2, valeur3, valeur4, valeur5, valeur6 ;
-
-                int compteur = 0 ;
-                if ( matcherVal.find()){
-                    while (matcherAtb.find()){
-                        compteur++ ;
-                        switch (compteur){
-                            case 1:
-                                frame.setTitle(matcherVal.group(1));
-                                panel.add(new JLabel(matcherAtb.group(1).trim()));
-                                valeur1 = new JTextField(matcherVal.group(2));
-                                valeur1.setEditable(false);
-                                panel.add(valeur1);
-                                break;
-                            case 2:
-                                panel.add(new JLabel(matcherAtb.group(1).trim()));
-                                valeur2 = new JTextField(matcherVal.group(3));
-                                valeur2.setEditable(false);
-                                panel.add(valeur2);
-                                break;
-                            case 3:
-                                panel.add(new JLabel(matcherAtb.group(1).trim()));
-                                valeur3 = new JTextField(matcherVal.group(4));
-                                valeur3.setEditable(false);
-                                panel.add(valeur3);
-                                panel.add(new JLabel("Quantité en stock"));
-                                valeur4 = new JTextField("" + item.getQuantityInStock());
-                                valeur4.setEditable(false);
-                                panel.add(valeur4);
-                                break;
-                            case 4:
-                                panel.add(new JLabel(matcherAtb.group(1).trim()));
-                                valeur5 = new JTextField(matcherVal.group(5));
-                                valeur5.setEditable(false);
-                                panel.add(valeur5);
-                                break;
-                            case 5:
-                                panel.add(new JLabel(matcherAtb.group(1).trim()));
-                                valeur6 = new JTextField(matcherVal.group(6));
-                                valeur6.setEditable(false);
-                                panel.add(valeur6);
-                                break;
-                        }
-                    }
-                }
-
-                JButton buttonOK = new JButton("OK");
-                buttonOK.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        frame.dispose();
-                    }
-                });
-                panel.add(buttonOK);
-                frame.add(panel);
-                frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                frame.setSize(350,350);
-                frame.setVisible(true); */
-
-                fenetreDeVisualisation(item);
+                GUIItemDialog fenetre = new GUIItemDialog(frame, item, false);
+                fenetre.setVisible(true);
             }
 
         });
@@ -273,6 +139,7 @@ public class GUIInventoryManager extends JFrame
                 // TODO -- Ajoutez le code nécessaire pour augmenter la quantité d'un item
                 //         ainsi que la gestion des erreurs possibles si nécessaire
                 //
+
             }
         });
 
@@ -312,6 +179,9 @@ public class GUIInventoryManager extends JFrame
                 // TODO -- Ajoutez le code pour ouvrir le dialogue d'édition d'un item
                 //         ainsi que la gestion des erreurs possibles si nécessaire
                 //
+                JFrame frame = new JFrame();
+                GUIItemDialog fenetre = new GUIItemDialog(frame, item, true);
+                fenetre.setVisible(true);
 
             }
         });

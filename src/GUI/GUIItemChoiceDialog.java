@@ -7,10 +7,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Boîte de dialogue permettant à l'utilisateur de choisir une catégorie d'item parmi :
+ * Pain, Œufs ou Lait.
+ */
 public class GUIItemChoiceDialog extends JDialog {
     private JFrame frame;
     private Category chosenCategory;
 
+    /**
+     * Constructeur
+     *
+     * @param frame la fenêtre parente
+     */
     public GUIItemChoiceDialog(JFrame frame) {
         super(frame, "Choisir un type", Dialog.ModalityType.DOCUMENT_MODAL);
         this.frame = frame;
