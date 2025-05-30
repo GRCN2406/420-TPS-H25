@@ -4,16 +4,28 @@ import Item.Exceptions.ExceptionItemAlreadyExists;
 import Item.Exceptions.ExceptionItemNotFound;
 import Item.Item.Item;
 
-
+/**
+ * Gère la base de données des articles sous forme de liste chaînée.
+ */
 public class InventoryDatabase {
     private int itemsCount ;
     private InventoryDatabaseNode first ;
 
+    /**
+     * Constructeur
+     * Initialise une base de données vide.
+     */
     public InventoryDatabase(){
         first = null ;
         itemsCount = 0 ;
     }
 
+    /**
+     * Insère un nouvel article dans la base.
+     *
+     * @param item l'article à ajouter
+     * @throws ExceptionItemAlreadyExists si un article avec le même ID existe déjà
+     */
     public void insert(Item item) throws ExceptionItemAlreadyExists{
         try{
             findByID(item.getID());
@@ -25,6 +37,14 @@ public class InventoryDatabase {
             itemsCount++ ;
         }
     }
+
+    /**
+     * Recherche un article par son identifiant.
+     *
+     * @param ID identifiant de l'article
+     * @return l'article correspondant
+     * @throws ExceptionItemNotFound si l'article n'existe pas
+     */
     public Item findByID(int ID) throws ExceptionItemNotFound {
         InventoryDatabaseNode actual = first ;
         while (actual != null){
@@ -36,7 +56,12 @@ public class InventoryDatabase {
        throw new ExceptionItemNotFound(ID)  ;
     }
 
-
+    /**
+     * Supprime un article de la base par son ID.
+     *
+     * @param ID identifiant de l'article à supprimer
+     * @throws ExceptionItemNotFound si l'article n'existe pas
+     */
     public void remove(int ID) throws ExceptionItemNotFound{
         InventoryDatabaseNode actual ;
 
@@ -64,6 +89,11 @@ public class InventoryDatabase {
 
     }
 
+    /**
+     * Retourne un tableau contenant tous les articles dans la base.
+     *
+     * @return tableau d'articles
+     */
     public Item[] getArrayOfItems(){
         Item[] itemsArray = new Item[itemsCount] ;
         InventoryDatabaseNode actual = first ;
