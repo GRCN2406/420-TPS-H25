@@ -9,7 +9,16 @@ import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Classe principale
+ */
 public class TestingMain  {
+    /**
+     * Extrait les informations d'un article depuis une ligne de texte et l'ajoute à l'inventaire.
+     *
+     * @param inventoryManager le gestionnaire d'inventaire
+     * @param texte la ligne contenant les informations de l'article
+     */
     public static void insererItem(InventoryManager inventoryManager, String texte){
         String motifItem = "Catégorie\\s*\\[(.+?)\\]\\s*" +
                 "ID\\s*\\[(.+?)\\]\\s*" +
@@ -44,6 +53,12 @@ public class TestingMain  {
         }
     }
 
+    /**
+     * Lit un fichier texte contenant des articles et les ajoute à l'inventaire.
+     *
+     * @param cheminVersFichier le chemin vers le fichier source
+     * @param inventoryManager le gestionnaire d'inventaire
+     */
     public static void lireInventaire(String cheminVersFichier, InventoryManager inventoryManager){
         try {
             FileReader fd = new FileReader(cheminVersFichier);
@@ -59,6 +74,12 @@ public class TestingMain  {
         }
     }
 
+    /**
+     * Écrit tous les articles de l'inventaire dans un fichier texte.
+     *
+     * @param cheminVersFichier le chemin vers le fichier de destination
+     * @param inventoryManager le gestionnaire d'inventaire
+     */
     public static void ecrireInventaire(String cheminVersFichier, InventoryManager inventoryManager){
         try {
             FileWriter fw = new FileWriter(cheminVersFichier);
