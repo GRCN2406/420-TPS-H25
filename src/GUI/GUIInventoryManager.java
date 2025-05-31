@@ -139,7 +139,7 @@ public class GUIInventoryManager extends JFrame {
                 // TODO -- Ajoutez le code nécessaire pour augmenter la quantité d'un item
                 //         ainsi que la gestion des erreurs possibles si nécessaire
                 //
-
+                item.setQuantityInStock(item.getQuantityInStock() + 1);
             }
         });
 
@@ -159,7 +159,8 @@ public class GUIInventoryManager extends JFrame {
                 // TODO -- Ajoutez le code nécessaire pour réduire la quantité ainsi que la gestion des
                 //  erreurs et afficher un dialogue d'erreur si jamais on essaye d'aller en dessous de zéro
                 //
-
+                if (item.getQuantityInStock() > 0)
+                    item.setQuantityInStock(item.getQuantityInStock() - 1);
             }
         });
 
