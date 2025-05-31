@@ -161,6 +161,8 @@ public class GUIInventoryManager extends JFrame {
                 //
                 if (item.getQuantityInStock() > 0)
                     item.setQuantityInStock(item.getQuantityInStock() - 1);
+                else
+                    showErrorDialog("Quantité en stock : " + item.getQuantityInStock());
             }
         });
 
@@ -216,6 +218,8 @@ public class GUIInventoryManager extends JFrame {
                 if (index != -1){
                     itemsListModel.remove(index);
                     inventoryManager.removeItem(item.getID());
+                }else{
+                    showErrorDialog("Item " + item.getID() + " introuvable");
                 }
             }
         });
