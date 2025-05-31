@@ -1,8 +1,8 @@
-package Item.GUI;
+package GUI;
 
-import Item.Exceptions.ExceptionInsufficientQuantityInStock;
-import Item.Exceptions.ExceptionItemAlreadyExists;
-import Item.Exceptions.ExceptionItemNotFound;
+import Exceptions.ExceptionInsufficientQuantityInStock;
+import Exceptions.ExceptionItemAlreadyExists;
+import Exceptions.ExceptionItemNotFound;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import Item.Inventaire.*;
-import Item.Item.* ;
+import Inventaire.*;
+import Item.* ;
 
 /**
  * Classe représentant l'interface graphique principale pour la gestion d'un inventaire d'items.

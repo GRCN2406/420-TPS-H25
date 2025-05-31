@@ -1,10 +1,10 @@
-package Item.GUI;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Item.Item.* ;
+import Item.* ;
 
 /**
  * Une boîte de dialogue permettant d'afficher ou de modifier les informations d'un item.

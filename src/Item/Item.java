@@ -1,6 +1,6 @@
-package Item.Item;
+package Item;
 
-import Item.Exceptions.ExceptionInsufficientQuantityInStock;
+import Exceptions.ExceptionInsufficientQuantityInStock;
 /**
  * Classe abstraite représentant un article Item avec une catégorie,
  * un identifiant, un nom, un prix et une quantité en stock.

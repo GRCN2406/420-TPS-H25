@@ -1,9 +1,9 @@
 package Item;
 
-import Item.Exceptions.*;
-import Item.GUI.GUIInventoryManager;
-import Item.Inventaire.InventoryManager;
-import Item.Item.*;
+import Exceptions.*;
+import GUI.GUIInventoryManager;
+import Inventaire.InventoryManager;
+import Item.*;
 
 import java.io.*;
 import java.util.regex.Matcher;
@@ -97,6 +97,12 @@ public class TestingMain  {
 
     }
 
+    /**
+     * Fonction principale
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         //
         // TODO -- Dé-commentez les lignes autres que //IO// et //G// au fur et à mesure de votre implémentation

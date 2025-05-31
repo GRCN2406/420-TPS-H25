@@ -1,4 +1,4 @@
-package Item.Exceptions;
+package Exceptions;
 /**
  * Exception levée lorsqu'on tente d'accéder à un item inexistant dans l'inventaire.
  */

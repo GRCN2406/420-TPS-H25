@@ -1,8 +1,8 @@
-package Item.Inventaire;
+package Inventaire;
 
-import Item.Exceptions.ExceptionItemAlreadyExists;
-import Item.Exceptions.ExceptionItemNotFound;
-import Item.Item.Item;
+import Exceptions.ExceptionItemAlreadyExists;
+import Exceptions.ExceptionItemNotFound;
+import Item.* ;
 
 /**
  * Gère la base de données des articles sous forme de liste chaînée.

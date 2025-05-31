@@ -1,5 +1,5 @@
-package Item.Inventaire;
-import Item.Item.*;
+package Inventaire;
+import Item.*;
 
 /**
  * Gère les opérations principales sur l'inventaire, telles que l'ajout,

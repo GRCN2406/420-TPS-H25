@@ -1,4 +1,4 @@
-package Item.Exceptions;
+package Exceptions;
 
 /**
  * Exception levée lorsqu'une opération tente de retirer une quantité

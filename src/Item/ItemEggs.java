@@ -1,4 +1,4 @@
-package Item.Item;
+package Item;
 
 /**
  * Représente un article de type œufs avec des propriétés spécifiques
@@ -69,9 +69,9 @@ public class ItemEggs extends Item {
     }
 
     /**
-     * Retourne la couleur des œufs.
+     * Modifie la couleur des oeufs
      *
-     * @return la couleur
+     * @param color couleur de modifiction
      */
     public void setColor(String color) {
         this.color = color;

@@ -1,6 +1,5 @@
-package Item.Inventaire;
-
-import Item.Item.Item;
+package Inventaire;
+import Item.*;
 
 /**
  * Représente un élément(noeud) dans la base de données de l'inventaire(liste chaînée).
@@ -8,6 +7,7 @@ import Item.Item.Item;
  */
 public class InventoryDatabaseNode {
     private Item item ;
+    /** Le prochain nœud de la liste chaînée. */
     public InventoryDatabaseNode next ;
 
     /**

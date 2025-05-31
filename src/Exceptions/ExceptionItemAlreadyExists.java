@@ -1,4 +1,4 @@
-package Item.Exceptions;
+package Exceptions;
 
 /**
  * Exception levée lorsqu'on tente d'ajouter un item avec un identifiant déjà existant.

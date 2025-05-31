@@ -1,4 +1,4 @@
-package Item.Item;
+package Item;
 
 /**
  * Représente un article de type lait avec un pourcentage de matières grasses

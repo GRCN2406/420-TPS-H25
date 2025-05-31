@@ -1,3 +1,14 @@
-package Item.Item;
+package Item;
 
-public enum Category { Bread, Eggs, Milk, Unknown }
+/**
+ * Enum Catégory représente les différents items
+ */
+public enum Category {
+    /** Pain */
+    Bread,
+    /** Oeufs */
+    Eggs,
+    /** Lait */
+    Milk,
+    /** Catégorie inconnue */
+    Unknown }

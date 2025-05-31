@@ -1,4 +1,4 @@
-package Item.Item;
+package Item;
 
 /**
  * Représente un article de type pain avec des propriétés spécifiques

@@ -1,6 +1,6 @@
-package Item.GUI;
+package GUI;
 
-import Item.Item.Category;
+import Item.Category;
 
 import javax.swing.*;
 import java.awt.*;
