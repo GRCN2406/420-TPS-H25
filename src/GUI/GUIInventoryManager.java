@@ -205,8 +205,20 @@ public class GUIInventoryManager extends JFrame {
                 //         item qui n'existe pas
                 //
 
+                int index = - 1 ;
+                for (int i = 0; i < inventoryManager.getArrayOfItems().length; i++) {
+                    if(inventoryManager.getArrayOfItems()[i].getID() == item.getID() ){
+                        index = i ;
+                        break;
+                    }
+                }
+                if (index != -1){
+                    itemsListModel.remove(index);
+                    inventoryManager.removeItem(item.getID());
+                }
             }
         });
+
 
         return button;
     }
@@ -239,6 +251,26 @@ public class GUIInventoryManager extends JFrame {
                     //         Conseil: Vous pourriez ajouter un item avec des valeurs temporaires puis demander
                     //         à l'utilisateur de les remplacer dans le dialogue de modification d'item.
                     //
+                    Item item = null ;
+                        switch (category){
+                            case Eggs:
+                                item = new ItemEggs(nextID,"nouvel item à éditer" ,0,null,0) ;
+                                inventoryManager.addNewEggsItem(nextID,"nouvel item à éditer" ,0,null,0);
+                                break;
+                            case Milk:
+                                item = new ItemMilk(nextID,"nouvel item à éditer" ,0,0,0) ;
+                                inventoryManager.addNewMilkItem(nextID,"nouvel item à éditer" ,0,0,0);
+                                break;
+                            case Bread:
+                                item = new ItemBread(nextID,"nouvel item à éditer" ,0,null,0) ;
+                                inventoryManager.addNewBreadItem(nextID,"nouvel item à éditer" ,0,null,0);
+                                break;
+                            default:
+                                break;
+                        }
+
+                        itemsListModel.addElement(item);
+                        nextID = getNextID();
 
                 }
             });
@@ -281,5 +313,17 @@ public class GUIInventoryManager extends JFrame {
         return BorderFactory.createEmptyBorder(0, 5, 10 , 5);
     }
 
-
+    private int getNextID(){
+        boolean existe ;
+       do{
+           existe = false ;
+           nextID = (int)(Math.random()*250 + 1);
+           for (int i = 0; i < inventoryManager.getArrayOfItems().length && !existe ; i++) {
+               if (inventoryManager.getArrayOfItems()[i].getID() == nextID){
+                   existe = true ;
+               }
+           }
+       } while (existe) ;
+       return nextID ;
+    }
 }
