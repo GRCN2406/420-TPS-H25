@@ -10,8 +10,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Classe principale
+ * Classe principal
+ * Dépot git : https://github.com/GRCN2406/420-TPS-H25
  */
+
 public class TestingMain  {
     /**
      * Extrait les informations d'un article depuis une ligne de texte et l'ajoute à l'inventaire.
