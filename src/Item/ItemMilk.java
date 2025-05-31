@@ -82,7 +82,7 @@ public class ItemMilk extends Item{
      * @return informations complètes du lait
      */
     public String infoToString(){
-        return this + " Gras [" + getFat() + "] Litres [" + getLiters() + "]"  ;
+        return super.infoToString() + " Gras [" + getFat() + "] Litres [" + getLiters() + "]"  ;
     }
 
 }

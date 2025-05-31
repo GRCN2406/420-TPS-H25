@@ -83,6 +83,6 @@ public class ItemEggs extends Item {
      * @return informations complètes des œufs
      */
     public String infoToString(){
-        return this + " Couleur [" + getColor() + "] Nombre [" + getNumber() + "]"  ;
+        return super.infoToString() + " Couleur [" + getColor() + "] Nombre [" + getNumber() + "]"  ;
     }
 }

@@ -149,7 +149,7 @@ public abstract class Item {
      * @return les informations de l'article
      */
     public String infoToString(){
-        return this.toString() ;
+        return "Catégorie [" + getCategory() + "] ID [" + getID() + "] Nom [" + getName() + "] Prix [" + getPrice() + "]"  ;
     }
 
     /**
@@ -159,7 +159,7 @@ public abstract class Item {
      */
     @Override
     public String toString() {
-        return "Catégorie [" + getCategory() + "] ID [" + getID() + "] Nom [" + getName() + "] Prix [" + getPrice() + "]"  ;
+        return getID() + " : " + getCategory() + " - " + getName() + " (" + getQuantityInStock() + ") " ;
     }
 }
 

@@ -85,6 +85,6 @@ public class ItemBread extends Item{
      * @return informations complètes du pain
      */
     public String infoToString(){
-        return this + " Couleur [" + getColor() + "] Poids [" + getWeight() + "]"  ;
+        return super.infoToString() + " Couleur [" + getColor() + "] Poids [" + getWeight() + "]"  ;
     }
 }
