@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Classe principal
+ * Classe principale
  * Dépot git : https://github.com/GRCN2406/420-TPS-H25
  */
 
